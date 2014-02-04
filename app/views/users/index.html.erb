@@ -1,6 +1,7 @@
 <h1>Listing users</h1>
 
-<table>
+<table id="table_id" class="dataTable">
+<thead>
   <tr>
     <th>Name</th>
     <th>Email</th>
@@ -8,7 +9,8 @@
     <th></th>
     <th></th>
   </tr>
-
+</thead>
+<tbody>
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
@@ -18,6 +20,7 @@
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
