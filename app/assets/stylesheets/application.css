@@ -11,5 +11,6 @@
  *= require_self
  *= require jquery_dataTables_themeroller.css
  *= require jquery_dataTables.css
+ *= require ColVis.css
  *= require_tree .
  */

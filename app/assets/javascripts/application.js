@@ -15,4 +15,5 @@
 //= require_tree .
 
 //= require jquery.dataTables
+//= require ColVis.js
 //= require table.js

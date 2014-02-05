@@ -1,26 +1,32 @@
 <h1>Listing users</h1>
 
-<table id="table_id" class="dataTable">
+
+<table id="datatable">
 <thead>
+	<tr><button class="oColvis">Column List</button></tr>
   <tr>
+    <th>User</th>
     <th>Name</th>
     <th>Email</th>
+    <th>Desc</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 </thead>
 <tbody>
-<% @users.each do |user| %>
+<% @users.each do |user| %> 
   <tr>
+    <td><%= user.user_id %></td>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
+    <td><%= user.desc %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
-</tbody>
+<tbody>
 </table>
 
 <br />
