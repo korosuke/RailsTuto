@@ -1,10 +1,13 @@
+<% provide(:title, "home")%>
+<% provide(:title, "home_hennkou")%>
 <h1>Listing users</h1>
 
 <span><%= link_to 'Show', {}, :id=> "show_link" %></span>
 <span><%= link_to 'Edit', {}, :id=> "edit_link" %></span>
 <span><%= link_to 'Destroy', {}, method: :delete, :id=> "destroy_link" %></span>
 <span><% debug @users[1] %></span>
-
+<br />
+<%= yield(:title)%>
 <table id="datatable" class="display">
 <thead>
   <tr>
