@@ -56,25 +56,35 @@ $(document).ready(function(){
 	// 詳細表示・編集・削除イベント登録
 //	var link_hash = new Array('#show_link', '#edit_link', '#destroy_link');
 	
-	for(var key in link_hash){
-		
-//		console.log(key);
-//		console.log(link_hash[key]);
-	    $(key).click( function( e ) {
-        	e.preventDefault();
-	    	console.log(this);
-	        var anSelected = fnGetSelected( oTable );
-	        console.log($(this).attr('id'));
-	        if ( anSelected.length !== 0 ) {        	
-	        	var url = $(this).attr("href") + "/" + (anSelected[0]._DT_RowIndex+1) + link_hash['#'+$(this).attr('id')];
-	        	console.log(url);
-	        	$(this).attr({href:url});
-	        }else{
-	        	// リンク無効化
-	        	e.preventDefault();
-	        }
-	    } );
-	}
+	// click prevent
+	$("#show_link").click( function(e){
+		e.preventDefault();
+		console.log(e);
+		console.log(e.currentTarget.jQuery17209638569315429777);
+		console.log(e.target);
+	});
+	
+//	for(var key in link_hash){
+////		jQuery17203091782450210303 : databaseのID番号
+////		jQuery17203091782450210303
+////		console.log(key);
+////		console.log(link_hash[key]);
+//	    $(key).click( function( e ) {
+//	    	console.log(e);
+//        	e.preventDefault();
+//	    	console.log(this);
+//	        var anSelected = fnGetSelected( oTable );
+//	        console.log($(this).attr('id'));
+//	        if ( anSelected.length !== 0 ) {        	
+//	        	var url = $(this).attr("href") + "/" + (anSelected[0]._DT_RowIndex+1) + link_hash['#'+$(this).attr('id')];
+//	        	console.log(url);
+//	        	$(this).attr({href:url});
+//	        }else{
+//	        	// リンク無効化
+//	        	e.preventDefault();
+//	        }
+//	    } );
+//	}
 
      
 	// テーブル初期化
