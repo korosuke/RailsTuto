@@ -1,36 +1,22 @@
+<%
+table_arr = {
+	'User'  => %w/user_id/,
+	'Name'  => %w/name/,
+	'Email' => %w/email/,
+	'Desc'  => %w/desc/,
+}
+
+row_arr = @users
+
+%>
+
 <h1>Listing users</h1>
 
 <span><%= link_to 'Show', {}, :id=> "show_link" %></span>
 <span><%= link_to 'Edit', {}, :id=> "edit_link" %></span>
 <span><%= link_to 'Destroy', {}, method: :delete, :id=> "destroy_link" %></span>
-<span><% debug @users[1] %></span>
 
-<table id="datatable" class="display">
-<thead>
-  <tr>
-    <th>User</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Desc</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-<% @users.each do |user| %> 
-  <tr>
-    <td><%= user.user_id %></td>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-    <td><%= user.desc %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-<tbody>
-</table>
+<%= render 'layouts/table'%>
 
 <br />
 
