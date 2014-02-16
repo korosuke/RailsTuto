@@ -2,8 +2,10 @@
 
 one:
   title: MyString
-  info: MyString
+  desc: MyString
+  review: MyString
 
 two:
   title: MyString
-  info: MyString
+  desc: MyString
+  review: MyString

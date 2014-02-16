@@ -1,9 +1,11 @@
+
 <h1>Listing games</h1>
 
 <table>
   <tr>
     <th>Title</th>
-    <th>Info</th>
+    <th>Desc</th>
+    <th>Review</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +14,8 @@
 <% @games.each do |game| %>
   <tr>
     <td><%= game.title %></td>
-    <td><%= game.info %></td>
+    <td><%= game.desc %></td>
+    <td><%= game.review %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

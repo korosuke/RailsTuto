@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
+    puts Game
     @games = Game.all
 
     respond_to do |format|
