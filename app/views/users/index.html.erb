@@ -1,13 +1,13 @@
-<%
-table_arr = {
-	'User'  => %w/user_id/,
-	'Name'  => %w/name/,
-	'Email' => %w/email/,
-	'Desc'  => %w/desc/,
-}
 
-row_arr = @users
+<%
+@table_arr = {
+	'User'  => %w/name/,
+	'User ID'  => %w/num/,
+	'Memo' => %w/memo/,
+}
 %>
+
+<% @row_arr = @users %>
 
 <h1>Listing users</h1>
 
@@ -15,7 +15,7 @@ row_arr = @users
 <span><%= link_to 'Edit', {}, :id=> "edit_link" %></span>
 <span><%= link_to 'Destroy', {}, method: :delete, :id=> "destroy_link" %></span>
 
-<%= render 'layouts/table'%>
+<%= render 'layouts/table' %>
 
 <br />
 

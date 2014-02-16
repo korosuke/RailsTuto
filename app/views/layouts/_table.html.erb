@@ -1,33 +1,23 @@
-<%
-table_arr = {
-	'User'  => %w/user_id/,
-	'Name'  => %w/name/,
-	'Email' => %w/email/,
-	'Desc'  => %w/desc/,
-}
-
-row_arr = @users
-
-%>
 
 <table id="datatable" class="display">
 	<thead>
 		<tr>
 			<th></th>
-			<% table_arr.each_key do |thead| %>
+			<% "view init table".deb %>
+			<% @table_arr.each_key do |thead| %>
 			<th><%= thead %></th>
 			<% end %>
 		</tr>
 	</thead>
 	<tbody>
-		<% row_arr.each do |row| %> 
+		<% @row_arr.each do |row| %> 
 		<tr>
 			<td>
 				<%= link_to 'S', row %>
 				<%= link_to 'E', edit_user_path(row) %>
 				<%= link_to 'D', row, method: :delete, data: { confirm: 'Are you sure?' } %>
 			</td>
-			<% table_arr.each_value do |field_arr|
+			<% @table_arr.each_value do |field_arr|
 				td = row
 				field_arr.each do |field|
 					td = td.__send__(field.intern) %>

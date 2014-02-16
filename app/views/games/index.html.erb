@@ -1,27 +1,21 @@
 
+<%
+@@table_arr = {
+  'Title'  => %w/title/,
+  'Desc'  => %w/desc/,
+  'Review' => %w/review/,
+}
+%>
+
+<% @row_arr = @games %>
+
 <h1>Listing games</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Desc</th>
-    <th>Review</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<span><%= link_to 'Show', {}, :id=> "show_link" %></span>
+<span><%= link_to 'Edit', {}, :id=> "edit_link" %></span>
+<span><%= link_to 'Destroy', {}, method: :delete, :id=> "destroy_link" %></span>
 
-<% @games.each do |game| %>
-  <tr>
-    <td><%= game.title %></td>
-    <td><%= game.desc %></td>
-    <td><%= game.review %></td>
-    <td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'layouts/table' %>
 
 <br />
 

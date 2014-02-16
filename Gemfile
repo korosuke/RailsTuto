@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.16'
 
+# for aptana
+# gem 'ruby-debug-base', '--include-dependencies'
+# gem 'ruby-debug-ide', '--include-dependencies'
+# gem 'ruby-debug19', :require => 'ruby-debug'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -39,4 +44,14 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
+# gem 'linecache19'
+# gem 'ruby-debug19'
+# gem 'ruby-debug-base19'
+# , :require => 'ruby-debug'
+# gem 'ruby-debug-ide19' # for eclipse
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
