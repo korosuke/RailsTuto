@@ -99,7 +99,7 @@ $(document).ready(function(){
 		// 列の表示・非表示
 		"sDom": 'C<"clear">lfrtip',
 		"oColVis": {
-			"activate": "mouseover"
+//			"activate": "mouseover"
 		}
 
 		// ソート不可列指定

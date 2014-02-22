@@ -9,9 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery_dataTables_themeroller.css
- *= require jquery_dataTables.css
- *= require ColVis.css
+ *= require jquery.dataTables.css
+ *= require dataTables.colVis.css
  *= require table.css
  *= require_tree .
  */

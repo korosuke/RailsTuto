@@ -317,9 +317,11 @@ ColVis.prototype = {
 		this.dom.wrapper = document.createElement('div');
 		this.dom.wrapper.className = "ColVis TableTools";
 		
+		console.log(this.s.buttonText);
 		this.dom.button = this._fnDomBaseButton( this.s.buttonText );
 		this.dom.button.className += " ColVis_MasterButton";
 		this.dom.wrapper.appendChild( this.dom.button );
+		console.log(this.dom.button);//TODO
 		
 		this.dom.catcher = this._fnDomCatcher();
 		this.dom.collection = this._fnDomCollection();
@@ -348,6 +350,7 @@ ColVis.prototype = {
 			for ( i=0, iLen=that.s.aiExclude.length ; i<iLen ; i++ ) {
 				that.s.aiExclude[i] = oReorder.aiInvertMapping[ that.s.aiExclude[i] ];
 			}
+			console.log('kokonani?');
 
 			var mStore = that.s.abOriginal.splice( oReorder.iFrom, 1 )[0];
 			that.s.abOriginal.splice( oReorder.iTo, 0, mStore );
@@ -598,6 +601,7 @@ ColVis.prototype = {
 			'<span class="ColVis_title">'+sTitle+'</span>' );
 		
 		$(nButton).click( function (e) {
+			console.log('osareta')
 			var showHide = !$('input', this).is(":checked");
 			if ( e.target.nodeName.toLowerCase() == "input" )
 			{
@@ -620,6 +624,7 @@ ColVis.prototype = {
 			}
 			else
 			{
+				
 				that.s.dt.oInstance.fnSetColumnVis( i, showHide );
 			}
 
@@ -647,6 +652,7 @@ ColVis.prototype = {
 		{
 			if ( this.s.dt.oInstance[i] == this.s.dt.nTable )
 			{
+				console.log("bangou: " + i);
 				return i;
 			}
 		}
@@ -676,6 +682,7 @@ ColVis.prototype = {
 		
 		$(nButton).bind( sEvent, function (e) {
 			that._fnCollectionShow();
+			console.log('osita');  // TODO
 			e.preventDefault();
 		} );
 		
@@ -689,6 +696,8 @@ ColVis.prototype = {
 	 *  @returns {Node} div container for the collection
 	 *  @private 
 	 */
+	
+	//ここ大事　TODO
 	"_fnDomCollection": function ()
 	{
 		var that = this;
