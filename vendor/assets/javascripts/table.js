@@ -22,6 +22,7 @@
 //          DELETE /users/:id(.:format)      users#destroy
 
 var oTable;
+var colvis;
 
 // showリンク
 var link_hash = {
@@ -38,6 +39,8 @@ function fnGetSelected( oTableLocal )
 }
 
 $(document).ready(function(){
+	
+	var datatable_id = "#datatable"
 	
 	// ソート不可列
 	var no_sort_column = new Array(3,4);
@@ -88,23 +91,81 @@ $(document).ready(function(){
 
      
 	// テーブル初期化
-	oTable = $("#datatable").dataTable({
-		"bPaginate": true,
-		"bLengthChange": false,
-		"bFilter": true,
-		"bSort": true,
-		"bInfo": true,
-		"bAutoWidth": true,
-		
-		// 列の表示・非表示
-		"sDom": 'C<"clear">lfrtip',
-		"oColVis": {
-//			"activate": "mouseover"
-		}
+	// colvis
+//	var colvis = new $.fn.datatable.ColVIs(oTable);
+	oTable = $('#datatable').DataTable({
+		'dom' : 'C<"clear">lfrtip',
+		"colVis": {
+            "label": function ( index, title, th ) {
+            	
+//            	var str = "hogehoge_" + index;
+//            	$('#test').after('<div class="'+str+'">hoge</div><br>');
+            	
+            	$('#test').after('<div class="test_button" data-test="' + index + '">test</div><br>');
+            	
+            	console.log(index);
+//            	$("."+str).click(function(){
+//            		console.log($(th).outerWidth() +' : '+ datatable_width);
+//            		console.log(th);
+//            	});
+                return (index+1) +'. '+ title;
+            }
+        },
+	});
+	colvis = new $.fn.dataTable.ColVis( oTable );
+	
+	// テーブルの横幅取得・固定
+	var datatable_width = $(datatable_id).width();
+	$(datatable_id).width(datatable_width);
+	
+	// カラムの列の幅の配列取得
+	var column_width_arr = new Array();;
+	var idx = 0;
+	// 各カラムの横幅取得
+	oTable.columns().data().each(function(){
+		var c = oTable.cell(0, idx);
+		column_width_arr[idx] = $(c.node()).outerWidth();
+		idx++;
+		console.log('width : ' + $(c.node()).outerWidth());
+	});
+	// log
+	console.log($('#datatable_wrapper').outerWidth());
+	
+	
+	// show hide用ボタンのクリック設定
+	$('.test_button').on('click', function(e){
+		// Get column index
+		var column_idx = $(this).attr('data-test');
 
-		// ソート不可列指定
-		
-    });
+		// Get the column API object
+        var column = oTable.column( column_idx );
+        
+        var cell = oTable.cell(0, $(this).attr('data-test'));
+        var wiwidth = $(cell.node()).width();
+        console.log($(cell.node()).width());
+        // Toggle the visibility
+        console.log(column.visible());
+        console.log('colum width' + column_width_arr[$(this).attr('data-test')]);
+        if(column.visible()){
+        	console.log(datatable_width);
+        	$(datatable_id).width($('#datatable').width() -　column_width_arr[$(this).attr('data-test')] );
+        }else{
+        	console.log(datatable_width);
+        	$(datatable_id).width($('#datatable').width() +　column_width_arr[$(this).attr('data-test')] );
+        };
+        
+        // カラムの非表示再表示
+        column.visible( ! column.visible() );
+	});
+	
+//	$('.test_button').click(function(){
+//		console.log('dfafas');
+//	});
+	
+	// test
+//	oTable.fnSetColumnVis( 2, false );
+//    ColVis.fnRebuild( oTable );
+	
+	
+	
 });
-
-

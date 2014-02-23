@@ -1,9 +1,13 @@
-@import jquery.dataTables.css
-@import dataTables.colVis.css
+
 
 /*
- * 
+ * AAA
  */
+.table_wrapper {
+  background-color : red;
+  // width : 500px;
+}
+
 table.display tr.even.row_selected td {
 	background-color: #B0BED9;
 }
@@ -11,3 +15,4 @@ table.display tr.even.row_selected td {
 table.display tr.odd.row_selected td {
 	background-color: #9FAFD1;
 }
+
