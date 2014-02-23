@@ -58,14 +58,13 @@ $(document).ready(function(){
         if(column.visible()){
         	console.log(datatable_width);
         	$(datatable_id).width($('#datatable').width() -　column_width_arr[column_idx] );
-        	oTable.fnSetColumnVis( column_idx, false );
+        	oTable.fnSetColumnVis( column_idx, false);
         }else{
         	console.log(datatable_width);
         	$(datatable_id).width($('#datatable').width() +　column_width_arr[column_idx] );
-        	oTable.fnSetColumnVis( column_idx, true );
+        	oTable.fnSetColumnVis( column_idx, true);
         };
 	}
-	
 	
 	// レコードクリックイベント
 	$("#datatable tbody tr").click( function( e ) {
@@ -115,13 +114,29 @@ $(document).ready(function(){
 	// テーブル初期化
 	var oTable = $('#datatable').dataTable({
 		'sDom' : 'C<"clear">lfrtip',
-		"colVis": {
-            "label": function ( index, title, th ) {            	
+        "colVis": {
+        	"label": function ( index, title, th ) {
+        		console.log(index +" : "+ th.clientWidth);
+        		$(this).attr({'class': index});
+        		$(th).addClass('dfadfa');
+        		
             	$('#test').after('<div class="test_button" data-test="' + index + '">test</div><br>');
                 return (index+1) +'. '+ title;
-            }
+            },
+            exclude: [0],
+            groups: [
+                {
+                    title: "Engine",
+                    columns: [ 1, 3 ]
+                },
+                {
+                    title: "Client",
+                    columns: [ 1, 2 ]
+                }
+            ]
         },
 	});
+	// colvis 取得
 	var colvis = new $.fn.dataTable.ColVis( oTable );
 	
 	// テーブルの横幅取得・固定
@@ -137,9 +152,10 @@ $(document).ready(function(){
 		column_width_arr[idx] = $(cell.node()).outerWidth();
 		idx++;
 	});	
+	console.log(column_width_arr);
 	
 	// カラムの非表示
-	var hidden_colums = [0,2];
+	var hidden_colums = [2,3];
 	$(hidden_colums).each(function() {
 		console.log('idx : '+ this);
 //		oTable.api().column(this).visible( false );
@@ -148,7 +164,7 @@ $(document).ready(function(){
 		fn_changeShowHide(this);
 	});
 	// 現在の状態をColVisに反映
-　   colvis.fnRebuild( oTable.api() );
+//　   colvis.fnRebuild( oTable.api() );
 	
 	// show hide用ボタンのクリック設定
 	$('.test_button').on('click', function(e){
@@ -156,4 +172,63 @@ $(document).ready(function(){
 		var column_idx = $(this).attr('data-test');
 		fn_changeShowHide(column_idx);
 	});
+	
+	// colvisボタンの状態を見てカラムのshow/hide対応をする
+//	$('.test_test').click(function(){
+//		console.log(this);
+//	});
+//	$('.test_test').on('click', function(){
+////		console.log(this);
+////		$().each(function(){
+//		$('UL.ColVis_collection').find('li:not(".ColVis_Special")').find(':checkbox').each(function(){
+//			console.log(this);
+//			console.log($(this).prop('checked'));
+//		});
+////			
+////		});
+//	});
+	
+	$('ul.ColVis_collection li:not(".ColVis_Special")').on('click', function(){
+		console.log($(this).val());
+	});
+	
+//	$(document).on("click", 'ul.ColVis_collection li:not(".ColVis_Special")', function(){
+//		console.log(this);
+//		console.log($(this).find(':checkbox').prop("checked"));
+//		console.log('documenttttt');
+////		return false;
+//	});
+
+//	$(document).on("click", '.ColVis_collection :checkbox', function(){
+//		console.log(this);
+//		console.log($(this).prop("checked"));
+//		console.log();
+//		console.log('documenttttt');
+//		return false;
+//	});
+	
+//	$(document).on("click", '.ColVis_collection li', function(e){
+////		console.log($(e.target).find(":checkbox"));
+//		console.log(e.target);
+//		if($(e.target).is(':checkbox')){
+//			console.log('atteru');
+//			console.log($(e.target).prop('checked'));
+//			
+//		}else{
+//			console.log('tyau');
+//		}
+//	});
+
+	$(datatable_id).on( 'column-visibility.dt', function ( e, settings, column, state ) {
+		console.log(column_width_arr[column]);
+		
+		if(state){
+        	$(datatable_id).width($(datatable_id).width() +　column_width_arr[column] );
+        }else{
+        	$(datatable_id).width($(datatable_id).width() -　column_width_arr[column] );
+        };
+    } );
+//	$('UL.ColVis_collection').find('li:not(".ColVis_Special")').find(':checkbox')
+	
+	
 });
