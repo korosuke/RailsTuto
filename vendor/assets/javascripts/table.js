@@ -53,8 +53,6 @@ $(document).ready(function(){
         var wiwidth = $(cell.node()).width();
         console.log($(cell.node()).width());
         // Toggle the visibility
-        console.log(column.visible());
-        console.log('colum width' + column_width_arr[column_idx]);
         if(column.visible()){
         	console.log(datatable_width);
         	$(datatable_id).width($('#datatable').width() -　column_width_arr[column_idx] );
@@ -157,78 +155,17 @@ $(document).ready(function(){
 	// カラムの非表示
 	var hidden_colums = [2,3];
 	$(hidden_colums).each(function() {
-		console.log('idx : '+ this);
-//		oTable.api().column(this).visible( false );
-//		oTable.fnSetColumnVis( this, false );
-		// 隠した分のカラムの横幅を縮小
 		fn_changeShowHide(this);
 	});
-	// 現在の状態をColVisに反映
-//　   colvis.fnRebuild( oTable.api() );
 	
-	// show hide用ボタンのクリック設定
-	$('.test_button').on('click', function(e){
-		// Get column index
-		var column_idx = $(this).attr('data-test');
-		fn_changeShowHide(column_idx);
-	});
-	
-	// colvisボタンの状態を見てカラムのshow/hide対応をする
-//	$('.test_test').click(function(){
-//		console.log(this);
-//	});
-//	$('.test_test').on('click', function(){
-////		console.log(this);
-////		$().each(function(){
-//		$('UL.ColVis_collection').find('li:not(".ColVis_Special")').find(':checkbox').each(function(){
-//			console.log(this);
-//			console.log($(this).prop('checked'));
-//		});
-////			
-////		});
-//	});
-	
-	$('ul.ColVis_collection li:not(".ColVis_Special")').on('click', function(){
-		console.log($(this).val());
-	});
-	
-//	$(document).on("click", 'ul.ColVis_collection li:not(".ColVis_Special")', function(){
-//		console.log(this);
-//		console.log($(this).find(':checkbox').prop("checked"));
-//		console.log('documenttttt');
-////		return false;
-//	});
-
-//	$(document).on("click", '.ColVis_collection :checkbox', function(){
-//		console.log(this);
-//		console.log($(this).prop("checked"));
-//		console.log();
-//		console.log('documenttttt');
-//		return false;
-//	});
-	
-//	$(document).on("click", '.ColVis_collection li', function(e){
-////		console.log($(e.target).find(":checkbox"));
-//		console.log(e.target);
-//		if($(e.target).is(':checkbox')){
-//			console.log('atteru');
-//			console.log($(e.target).prop('checked'));
-//			
-//		}else{
-//			console.log('tyau');
-//		}
-//	});
-
+	// カラムのshow/hide切り替えコールバック
 	$(datatable_id).on( 'column-visibility.dt', function ( e, settings, column, state ) {
 		console.log(column_width_arr[column]);
-		
 		if(state){
         	$(datatable_id).width($(datatable_id).width() +　column_width_arr[column] );
         }else{
         	$(datatable_id).width($(datatable_id).width() -　column_width_arr[column] );
         };
-    } );
-//	$('UL.ColVis_collection').find('li:not(".ColVis_Special")').find(':checkbox')
-	
-	
+        oTable.api().columns.adjust().draw();
+    } );	
 });
